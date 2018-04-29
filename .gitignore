@@ -1,0 +1,11 @@
+node_modules/
+.vscode/
+.idea/
+*.log
+.DS_Store
+
+build/
+dist/
+public/assets/
+/coverage
+/.nyc_output
