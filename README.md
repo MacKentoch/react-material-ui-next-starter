@@ -14,6 +14,7 @@
 - react-hot-loader v4+
 - webpack 4.x
 - workbox-webpack-plugin
+- [loadable-components](https://github.com/smooth-code/loadable-components)
 
 ## Usage
 
