@@ -10,7 +10,7 @@ const nodeModulesDir = path.join(__dirname, 'node_modules');
 const indexFile = path.join(__dirname, 'src/front/index.js');
 
 const config = {
-  mode: 'production',
+  mode: 'development',
   devtool: 'source-map',
   target: 'web',
   entry: {
