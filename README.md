@@ -3,7 +3,7 @@
 # React Material Next Starter
 
 
-> A simple **up-to-date** `ReactJS` starter that uses `Material UI Next` `react-router v4` and `webpack 4` and offer offline (*PWA is no more an option*) support thanks to Google `workbox`.
+> A simple **up-to-date** `ReactJS` starter that uses `Material UI Next` `react-router v4` and `webpack 4` and offer offline (*PWA is no more an option*) support thanks to Google `workbox` code splitting with `loadable-components`.
 
 
 ## contents
