@@ -7,6 +7,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const workboxPlugin = require('workbox-webpack-plugin');
 
 const assetsDir = path.join(__dirname, 'docs/public/assets');
+const publicAssets = 'public/assets/';
 const nodeModulesDir = path.join(__dirname, 'node_modules');
 const indexFile = path.join(__dirname, 'src/front/index.js');
 
@@ -19,7 +20,7 @@ const config = {
   },
   output: {
     path: assetsDir,
-    publicPath: '/',
+    publicPath: publicAssets,
     filename: '[name].js',
     chunkFilename: '[name].js',
   },
