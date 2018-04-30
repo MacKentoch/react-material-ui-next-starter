@@ -3,7 +3,7 @@
 # React Material Next Starter
 
 
-> A simple **up-to-date** `ReactJS` starter that uses `Material UI Next` `react-router v4` and `webpack 4` and offer offline (*PWA is no more an option*) support thanks to Google `workbox` code splitting with `loadable-components`.
+> A simple **up-to-date** `ReactJS` starter that uses `Material UI Next` `react-router v4` and `webpack 4` and offer offline (*PWA is no more an option*) support thanks to Google `workbox` code splitting with `loadable-components` and snapshot pre-rendering with `react-snap` (*some kind SSR for static websites; PWA and SEO and SMO friendly*).
 
 
 ## contents
@@ -15,6 +15,7 @@
 - webpack 4.x
 - workbox-webpack-plugin
 - [loadable-components](https://github.com/smooth-code/loadable-components)
+- [react-snap](https://github.com/stereobooster/react-snap)
 
 ## Usage
 
@@ -52,6 +53,12 @@ npm run test
 
 ```bash
 npm run prod
+```
+
+### analyse bundle production weight
+
+```bash
+npm run analyze
 ```
 
 ### mini node-express server

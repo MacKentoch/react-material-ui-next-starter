@@ -1,16 +1,26 @@
 {
   "name": "react-material-next-starter",
+  "author": "Erwan DATIN (MacKentoch)",
+  "license": "MIT",
   "version": "1.0.0",
   "description": "ReactJS + Material-UI Next starter",
   "main": "src/index.js",
   "scripts": {
     "flow": "node_modules/.bin/flow",
+    "predev": "node ./scripts/prepareIndexHtml.js",
     "dev": "rimraf docs/public/assets && cross-env NODE_ENV=dev webpack --config webpack.dev.config.js",
+    "postdev": "react-snap",
+    "preprod": "node ./scripts/prepareIndexHtml.js",
     "prod": "rimraf docs/public/assets && cross-env NODE_ENV=production webpack -p --config webpack.production.config.js",
+    "postprod": "react-snap",
     "analyze": "rimraf docs/public/assets && cross-env NODE_ENV=production webpack -p --config webpack.analyze.config.js",
+    "preStart": "node ./scripts/prepareIndexHtml.js",
     "start": "cross-env NODE_ENV=dev webpack-dev-server --config ./webpack.hot.reload.config.js --mode development",
     "serve-dev": "npm run dev && nodemon ./src/server/index.js",
     "serve-prod": "npm run prod && node ./src/server/index.js"
+  },
+  "reactSnap": {
+    "source": "docs"
   },
   "engines": {
     "node": ">=8.11.1",
@@ -32,8 +42,6 @@
     "hot-reload",
     "react-hot-reload"
   ],
-  "author": "Erwan DATIN (MacKentoch)",
-  "license": "MIT",
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/chalk": "^2.2.0",
@@ -59,6 +67,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-logger": "^3.0.6",
+    "@types/rename": "^1.0.1",
     "@types/webpack": "^4.1.4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -100,6 +109,7 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.1",
     "regenerator-runtime": "^0.11.1",
+    "rename": "^1.0.4",
     "rimraf": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",

@@ -2,7 +2,7 @@
 
 // #region imports
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import injectTpEventPlugin from 'react-tap-event-plugin';
 import smoothScrollPolyfill from 'smoothscroll-polyfill';
 import { MuiThemeProvider } from 'material-ui/styles';
@@ -19,19 +19,24 @@ window.__forceSmoothScrollPolyfill__ = true;
 // #endregion
 
 const ELEMENT_TO_BOOTSTRAP = 'root';
-const BootstrapedElement = document.getElementById(ELEMENT_TO_BOOTSTRAP);
+const bootstrapedElement = document.getElementById(ELEMENT_TO_BOOTSTRAP);
 
 injectTpEventPlugin();
 
 const renderApp = RootComponent => {
-  render(
+  const Application = () => (
     <AppContainer>
       <MuiThemeProvider theme={theme}>
         <RootComponent />
       </MuiThemeProvider>
-    </AppContainer>,
-    BootstrapedElement,
+    </AppContainer>
   );
+
+  if (bootstrapedElement.hasChildNodes()) {
+    hydrate(<Application />, bootstrapedElement);
+  } else {
+    render(<Application />, bootstrapedElement);
+  }
 };
 
 renderApp(Root);
