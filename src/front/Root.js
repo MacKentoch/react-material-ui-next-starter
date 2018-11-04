@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import compose from 'recompose/compose';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import withMainLayout from './hoc/withMainLayout';
 import MainRoutes from './routes/MainRoutes';
 import fadeIn from './style/animations/fadeIn';

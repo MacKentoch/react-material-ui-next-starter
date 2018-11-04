@@ -4,11 +4,11 @@
 import React, { PureComponent } from 'react';
 import { type Match, type Location, type RouterHistory } from 'react-router';
 import cx from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
-import Card, { CardActions, CardHeader, CardContent } from 'material-ui/Card';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Card, { CardActions, CardHeader, CardContent } from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
 import styles from './styles';
 // #endregion
 

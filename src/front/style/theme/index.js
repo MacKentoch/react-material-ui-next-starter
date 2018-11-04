@@ -1,11 +1,11 @@
 // @flow
 
 // #region imports
-import { createMuiTheme } from 'material-ui/styles';
-import cyan from 'material-ui/colors/cyan';
-import pink from 'material-ui/colors/pink';
-import grey from 'material-ui/colors/grey';
-import spacing from 'material-ui/styles/spacing';
+import { createMuiTheme } from '@material-ui/core/styles';
+import cyan from '@material-ui/core/colors/cyan';
+import pink from '@material-ui/core/colors/pink';
+import grey from '@material-ui/core/colors/grey';
+import spacing from '@material-ui/core/styles/spacing';
 // #endregion
 
 // #region constants

@@ -1,9 +1,10 @@
 [ignore]
 
 [include]
+./src
 
 [libs]
-./interfaces/global.js
+./flow-typed/react-material-ui-starter
 
 [options]
 module.name_mapper='.*\(.css\)' -> 'CSSModule'
