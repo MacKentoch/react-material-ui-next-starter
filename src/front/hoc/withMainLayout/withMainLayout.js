@@ -3,25 +3,34 @@
 // #region imports
 import React, { Component } from 'react';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import classNames from 'classnames';
 import compose from 'recompose/compose';
+import classNames from 'classnames';
 import { withRouter } from 'react-router';
 import { type Match, type Location, type RouterHistory } from 'react-router';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create } from 'jss';
+import {
+  withStyles,
+  createGenerateClassName,
+  jssPreset,
+} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 // import List from '@material-ui/core/List';
-import AppBar from '@material-ui/core/AppBar';
-import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { withStyles } from '@material-ui/core/styles';
-// import { withTheme } from '@material-ui/core/styles';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import appConfig from '../../config/appConfig';
 import { type Menu } from '../../config/appConfig';
 import styles from './styles';
 import registerServiceWorker from '../../utils/sw/registerServiceWorker';
+// import { mainListItems, secondaryListItems } from './listItems';
 // #endregion
 
 // #region flow types
@@ -39,12 +48,17 @@ type Props = {
     root: string,
     appBar: string,
     appBarShift: string,
+    toolbar: string,
+    toolbarIcon: string,
     menuButton: string,
-    hide: string,
+    menuButtonHidden: string,
+    title: string,
     drawerPaper: string,
-    drawerPaperclose: string,
-    toolBar: string,
+    appBarSpacer: string,
     content: string,
+    chartContainer: string,
+    tableContainer: string,
+    h5: string,
   },
 };
 
@@ -58,6 +72,12 @@ type State = {
 // #region constants
 const { menus } = appConfig.drawer;
 const { APP_NAME } = appConfig;
+// we need it to avoid prod bundle style mess ('case code splitting and lazy loading with jss)
+const generateClassName = createGenerateClassName({
+  dangerouslyUseGlobalCSS: true,
+  productionPrefix: 'stupid-jss',
+});
+const jss = create(jssPreset());
 // #endregion
 
 // #region withMainLayout HOC
@@ -84,56 +104,74 @@ function withMainLayout() {
         /* eslint-enable no-unused-vars */
 
         return (
-          <div className={classes.root}>
-            <AppBar
-              position="absolute"
-              className={classNames(
-                classes.appBar,
-                this.state.open && classes.appBarShift,
-              )}
-            >
-              <Toolbar disableGutters={!drawerOpened}>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={this.handleDrawerOpen}
+          <JssProvider jss={jss} generateClassName={generateClassName}>
+            <React.Fragment>
+              <CssBaseline />
+              <div className={classes.root}>
+                <AppBar
+                  position="absolute"
                   className={classNames(
-                    classes.menuButton,
-                    this.state.open && classes.hide,
+                    classes.appBar,
+                    drawerOpened && classes.appBarShift,
                   )}
                 >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="title" color="inherit" noWrap>
-                  {appName}
-                </Typography>
-              </Toolbar>
-            </AppBar>
-            <Drawer
-              variant="permanent"
-              classes={{
-                paper: classNames(
-                  classes.drawerPaper,
-                  !this.state.open && classes.drawerPaperClose,
-                ),
-              }}
-              open={this.state.open}
-            >
-              <div className={classes.toolbar}>
-                <IconButton onClick={this.handleDrawerClose}>
-                  <ChevronLeftIcon />
-                </IconButton>
+                  <Toolbar
+                    disableGutters={!drawerOpened}
+                    className={classes.toolbar}
+                  >
+                    <IconButton
+                      color="inherit"
+                      aria-label="Open drawer"
+                      onClick={this.handleDrawerOpen}
+                      className={classNames(
+                        classes.menuButton,
+                        drawerOpened && classes.menuButtonHidden,
+                      )}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                    <Typography
+                      component="h1"
+                      variant="h6"
+                      color="inherit"
+                      noWrap
+                      className={classes.title}
+                    >
+                      {appName || ''}
+                    </Typography>
+                    <IconButton color="inherit">
+                      <Badge badgeContent={4} color="secondary">
+                        <NotificationsIcon />
+                      </Badge>
+                    </IconButton>
+                  </Toolbar>
+                </AppBar>
+                <Drawer
+                  variant="permanent"
+                  classes={{
+                    paper: classNames(
+                      classes.drawerPaper,
+                      !drawerOpened && classes.drawerPaperClose,
+                    ),
+                  }}
+                  open={drawerOpened}
+                >
+                  <div className={classes.toolbarIcon}>
+                    <IconButton onClick={this.handleDrawerClose}>
+                      <ChevronLeftIcon />
+                    </IconButton>
+                  </div>
+                  <Divider />
+                  {/* <List>{mainListItems}</List> */}
+                  <Divider />
+                  {/* <List>{secondaryListItems}</List> */}
+                </Drawer>
+                <main className={classes.content}>
+                  <BaseComponent {...passProps} />
+                </main>
               </div>
-              <Divider />
-              {/* <List>{mailFolderListItems}</List> */}
-              <Divider />
-              {/* <List>{otherMailFolderListItems}</List> */}
-            </Drawer>
-            <main className={classes.content}>
-              <div className={classes.toolbar} />
-              <BaseComponent {...passProps} />
-            </main>
-          </div>
+            </React.Fragment>
+          </JssProvider>
         );
       }
       // #endregion
@@ -177,7 +215,10 @@ function withMainLayout() {
     /* eslint-enable no-process-env */
     // #endregion
 
-    return compose(withRouter, withStyles(styles))(WithMainLayout);
+    return compose(
+      withRouter,
+      withStyles(styles),
+    )(WithMainLayout);
   };
 }
 // #endregion

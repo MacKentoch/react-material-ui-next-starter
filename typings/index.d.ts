@@ -1,7 +1,6 @@
 /// <reference path="globals/axios/index.d.ts" />
 /// <reference path="globals/classnames/index.d.ts" />
 /// <reference path="globals/jest/index.d.ts" />
-/// <reference path="globals/material-ui/index.d.ts" />
 /// <reference path="globals/modernizr/index.d.ts" />
 /// <reference path="globals/node/index.d.ts" />
 /// <reference path="globals/popper.js/index.d.ts" />

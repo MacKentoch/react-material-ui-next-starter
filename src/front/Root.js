@@ -3,7 +3,7 @@
 // #region imports
 import React, { Component } from 'react';
 import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import createHistory from 'history/createBrowserHistory';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import withMainLayout from './hoc/withMainLayout';
@@ -28,8 +28,11 @@ const styles = theme => ({
 // #endregion
 
 // #region constants
-const history = createBrowserHistory();
-const App = compose(withStyles(styles), withMainLayout())(MainRoutes);
+const history = createHistory();
+const App = compose(
+  withStyles(styles),
+  withMainLayout(),
+)(MainRoutes);
 // #endregion
 
 class Root extends Component {

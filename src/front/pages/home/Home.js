@@ -7,13 +7,16 @@ import cx from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Card, { CardActions, CardHeader, CardContent } from '@material-ui/core/Card';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import styles from './styles';
 // #endregion
 
 // #region flow types
-type Props = {
+export type Props = {
   // react-router 4:
   match: Match,
   location: Location,
@@ -28,7 +31,7 @@ type Props = {
   ...any,
 };
 
-type State = {
+export type State = {
   animated: boolean,
 
   ...any,
@@ -55,11 +58,11 @@ class Home extends PureComponent<Props, State> {
             <Card>
               <CardHeader title="Home" />
               <CardContent>
-                <Typography variant="title" gutterBottom>
+                <Typography variant="h1" gutterBottom>
                   Material Next starter
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  React 16.3+ - Material UI Next (v1 beta) - react-router 4+ -
+                  React 16.3+ - Material UI Next - babel 7 - react-router 4+ -
                   Webpack 4+ - react-hot-loader 4+ - workbox-webpack-plugin (=
                   PWA friendly)
                 </Typography>

@@ -6,7 +6,10 @@ import { type Match, type Location, type RouterHistory } from 'react-router';
 import cx from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Card, { CardActions, CardHeader, CardContent } from '@material-ui/core/Card';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import styles from './styles';
@@ -55,7 +58,7 @@ class About extends PureComponent<Props, State> {
             <Card>
               <CardHeader title="About" />
               <CardContent>
-                <Typography variant="title" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                   About Page
                 </Typography>
                 <Typography variant="body2" gutterBottom>

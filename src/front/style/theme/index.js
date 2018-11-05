@@ -15,6 +15,9 @@ const fullBlack = '#4A4A4A';
 // #endregion
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
   direction: 'ltr',

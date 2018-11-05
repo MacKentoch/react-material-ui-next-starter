@@ -4,6 +4,7 @@
 import React from 'react';
 import { hydrate, render } from 'react-dom';
 import smoothScrollPolyfill from 'smoothscroll-polyfill';
+import { loadComponents, getState } from 'loadable-components';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './style/theme';
 import { AppContainer } from 'react-hot-loader';
@@ -15,6 +16,7 @@ import 'babel-polyfill';
 smoothScrollPolyfill.polyfill();
 // force polyfill (even if browser partially implements it)
 window.__forceSmoothScrollPolyfill__ = true;
+window.snapSaveState = () => getState();
 // #endregion
 
 const ELEMENT_TO_BOOTSTRAP = 'root';
@@ -29,8 +31,11 @@ const renderApp = RootComponent => {
     </AppContainer>
   );
 
+  // needed for react-snap:
   if (bootstrapedElement.hasChildNodes()) {
-    hydrate(<Application />, bootstrapedElement);
+    loadComponents().then(() => {
+      hydrate(<Application />, bootstrapedElement);
+    });
   } else {
     render(<Application />, bootstrapedElement);
   }

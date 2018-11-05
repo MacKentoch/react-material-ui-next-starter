@@ -11,12 +11,17 @@ const { width: drawerWidth } = appConfig.drawer;
 // #region styles
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    height: '100vh',
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
     display: 'flex',
+  },
+  toolbar: {
+    paddingRight: 24, // keep right padding when drawer closed
+  },
+  toolbarIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -37,8 +42,11 @@ const styles = theme => ({
     marginLeft: 12,
     marginRight: 36,
   },
-  hide: {
+  menuButtonHidden: {
     display: 'none',
+  },
+  title: {
+    flexGrow: 1,
   },
   drawerPaper: {
     position: 'relative',
@@ -60,17 +68,22 @@ const styles = theme => ({
       width: theme.spacing.unit * 9,
     },
   },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
+  appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+    height: '100vh',
+    overflow: 'auto',
+    marginTop: 75,
+  },
+  chartContainer: {
+    marginLeft: -22,
+  },
+  tableContainer: {
+    height: 320,
+  },
+  h5: {
+    marginBottom: theme.spacing.unit * 2,
   },
 });
 // #endregion

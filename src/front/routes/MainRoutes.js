@@ -6,8 +6,6 @@ import { Route, Switch } from 'react-router';
 import { Home, About, PageNotFound } from './routes';
 // #endregion
 
-console.log('');
-
 const MainRoutes = () => {
   return (
     <Switch>

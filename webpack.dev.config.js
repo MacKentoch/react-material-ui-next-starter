@@ -1,13 +1,20 @@
 // @flow
 
+// #region imports
 const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const workboxPlugin = require('workbox-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
+// #endregion
 
-const assetsDir = path.join(__dirname, 'docs/public/assets');
-const publicAssets = 'public/assets/';
+// #region constants
+const outputPath = path.join(__dirname, 'docs/assets');
+const publicPath = '/assets/';
 const nodeModulesDir = path.join(__dirname, 'node_modules');
 const indexFile = path.join(__dirname, 'src/front/index.js');
+// #endregion
 
 const config = {
   mode: 'development',
@@ -21,10 +28,10 @@ const config = {
     extensions: ['.js', 'jsx'],
   },
   output: {
-    path: assetsDir,
-    publicPath: publicAssets,
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    path: outputPath,
+    publicPath,
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[hash].js',
   },
   module: {
     rules: [
@@ -32,6 +39,10 @@ const config = {
         test: /\.jsx?$/,
         exclude: [nodeModulesDir],
         loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
@@ -56,10 +67,27 @@ const config = {
           name: 'vendors',
           chunks: 'all',
         },
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
       },
     },
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: 'src/front/statics/index.html',
+    }),
+    new ModernizrWebpackPlugin({
+      htmlWebpackPlugin: true,
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('dev'),
