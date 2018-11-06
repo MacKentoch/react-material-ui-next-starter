@@ -1,6 +1,7 @@
 // @flow
 
 // #region imports
+import 'babel-polyfill';
 import React from 'react';
 import { hydrate, render } from 'react-dom';
 import smoothScrollPolyfill from 'smoothscroll-polyfill';
@@ -9,7 +10,6 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './style/theme';
 import { AppContainer } from 'react-hot-loader';
 import Root from './Root';
-import 'babel-polyfill';
 // #endregion
 
 // #region smoothscroll polyfill

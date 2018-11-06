@@ -11,6 +11,7 @@
 - react 16.3+
 - [Material UI Next](https://material-ui-next.com/)
 - react-router v4
+- babel 7+
 - react-hot-loader v4+
 - webpack 4.x
 - workbox-webpack-plugin
@@ -22,58 +23,54 @@
 ### Install
 
 ```bash
-npm install
-```
-or
-
-```bash
 yarn install
 ```
 
 ### bundle dev mode
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 ### dev : hot reload mode
 
 ```bash
-npm run start
+yarn run start
 ```
 
 ### tests
 
 ```bash
-npm run test
+yarn run test
 ```
 
 ### bundle production mode
 
-
 ```bash
-npm run prod
+yarn run prod
 ```
 
 ### analyse bundle production weight
 
 ```bash
-npm run analyze
+yarn run analyze
 ```
 
 ### mini node-express server
 
 with server hot reload (*and app dev bundle*):
+
 ```bash
-npm run serve-dev
+yarn run serve-dev
 ```
 
 without hot reload (*and app prod bundle*):
+
 ```bash
-npm run serve-prod
+yarn run serve-prod
 ```
 
- ## License
+## License
 
  The MIT License (MIT)
 
