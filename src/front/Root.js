@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import withMainLayout from './hoc/withMainLayout';
 import MainRoutes from './routes/MainRoutes';
 import fadeIn from './style/animations/fadeIn';
+import { devToolsStore } from './contexts/withDevTools';
 // #endregion
 
 // #region style (global styles)
@@ -36,6 +37,16 @@ const App = compose(
 // #endregion
 
 class Root extends Component {
+  componentDidMount() {
+    // init devTools (so that will be visible in Chrome redux devtools tab):
+    devToolsStore && devToolsStore.init();
+  }
+
+  componentWillUnmount() {
+    // disconnect devTools here at top level application:
+    devToolsStore && devToolsStore.disconnect();
+  }
+
   render() {
     return (
       <Router history={history}>
