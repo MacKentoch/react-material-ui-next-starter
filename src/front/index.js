@@ -10,6 +10,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './style/theme';
 import { AppContainer } from 'react-hot-loader';
 import Root from './Root';
+import AutProvider from './contexts/auth/providerComponent';
 // #endregion
 
 // #region smoothscroll polyfill
@@ -26,7 +27,9 @@ const renderApp = RootComponent => {
   const Application = () => (
     <AppContainer>
       <MuiThemeProvider theme={theme}>
-        <RootComponent />
+        <AutProvider>
+          <RootComponent />
+        </AutProvider>
       </MuiThemeProvider>
     </AppContainer>
   );
