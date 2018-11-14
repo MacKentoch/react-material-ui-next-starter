@@ -2,32 +2,25 @@
 
 // #region imports
 import React, { PureComponent } from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom';
-import {
-  type Match,
-  type Location,
-  type RouterHistory,
-} from 'react-router-dom';
-import auth from '../../services/auth';
+import { Route, Redirect } from 'react-router-dom';
+import { type AuthContextProps } from '../../contexts/auth/consumerHOC';
+import { type RouterProps } from '../../types/react-router';
 // #endregion
 
 // #region flow types
 type Props = {
-  // react-router 4:
-  match: Match,
-  location: Location,
-  history: RouterHistory,
-
   ...any,
-};
+} & RouterProps &
+  AuthContextProps;
+
 type State = any;
 // #endregion
 
 class LogoutRoute extends PureComponent<Props, State> {
   // #region lifecycle
   componentDidMount() {
-    // auth.clearAllAppStorage();
-    // TODO: logout
+    const { disconnectUser } = this.props;
+    disconnectUser();
   }
 
   render() {
@@ -40,4 +33,4 @@ class LogoutRoute extends PureComponent<Props, State> {
   // #endregion
 }
 
-export default withRouter(LogoutRoute);
+export default LogoutRoute;
