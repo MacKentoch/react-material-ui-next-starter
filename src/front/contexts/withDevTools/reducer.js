@@ -2,7 +2,7 @@
 
 // #region devtools reducer
 const initialState = {
-  user: {},
+  auth: {},
 };
 
 export const reducer = (
@@ -12,15 +12,11 @@ export const reducer = (
   /* eslint-disable no-unused-vars */
   switch (action.type) {
     // #region user context
-    case 'USER_REGISTER_REQUEST':
-    case 'USER_REGISTER_SUCCESS':
-    case 'USER_REGISTER_ERROR':
-    case 'USER_LOGIN_REQUEST':
-    case 'USER_LOGIN_SUCCESS':
-    case 'USER_LOGIN_ERROR':
-    case 'USER_LOGOUT_REQUEST':
-    case 'USER_LOGOUT_SUCESS':
-    case 'USER_LOGOUT_ERROR': {
+    case 'AUTH_CHECK_IS_AUTHENTICATED':
+    case 'AUTH_CHECK_TOKEN_IS_EXPIRED':
+    case 'AUTH_SET_TOKEN':
+    case 'AUTH_SET_USER_INFO':
+    case 'AUTH_DISCONNECT_USER': {
       const { type, state: context, ...rest } = action;
       return { ...state, user: { context, ...rest } };
     }
