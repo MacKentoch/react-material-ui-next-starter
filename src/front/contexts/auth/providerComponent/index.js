@@ -3,7 +3,7 @@
 // #region imports
 import React, { Component } from 'react';
 import { AuthContextProvider, type AuthData, type User } from '../context';
-import auth from '../../../auth/auth';
+import auth from '../../../utils/auth';
 import { devToolsStore } from '../../withDevTools';
 // #endregion
 
